@@ -1,5 +1,7 @@
 # Cattxt app
 
+A minimal text editor with no ai nonsense
+
 ## Run the app
 
 ### uv
