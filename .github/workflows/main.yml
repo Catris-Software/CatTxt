@@ -1,0 +1,59 @@
+name: Build Flet App
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: apk
+            runner: ubuntu-latest
+
+          - target: aab
+            runner: ubuntu-latest
+
+          - target: web
+            runner: ubuntu-latest
+
+          - target: linux
+            runner: ubuntu-latest
+
+          - target: windows
+            runner: windows-latest
+
+          - target: macos
+            runner: macos-latest
+
+          - target: ipa
+            runner: macos-latest
+
+          - target: ios-simulator
+            runner: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Build app
+        id: build
+        uses: flet-dev/flet-build-action@v1
+        with:
+          target: ${{ matrix.target }}
+          runner-python-version: "3.14"
+          bundled-python-version: "3.14"
+          build-number: ${{ github.run_number }}
+
+      - name: Upload build archive
+        uses: actions/upload-artifact@v7
+        with:
+          path: ${{ steps.build.outputs.archive-path }}
+          archive: false
+          if-no-files-found: error
+          overwrite: false
