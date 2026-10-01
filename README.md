@@ -1,5 +1,12 @@
 # Cattxt app
 
+![GitHub Tag](https://img.shields.io/github/v/tag/Catris-Software/CatTxt)
+![GitHub License](https://img.shields.io/github/license/Catris-Software/catTxt)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Catris-Software/CatTxt)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Catris-Software/CatTxt)
+![GitHub Issues](https://img.shields.io/github/issues/Catris-Software/CatTxt)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Catris-Software/CatTxt/total)
+
 A minimal text editor with no ai nonsense
 
 ## Run the app
