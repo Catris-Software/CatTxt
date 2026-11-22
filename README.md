@@ -9,6 +9,44 @@
 
 A minimal text editor with no ai nonsense
 
+## Local Setup (`venv` + `pip`)
+
+Follow these steps to clone the repository, set up a local virtual environment, and install the project dependencies.
+
+### 1. Clone the repository
+```bash
+git clone https://github.com
+cd CatTxt
+```
+
+### 2. Create and activate a virtual environment
+Create a `.venv` folder in the project root:
+```bash
+python -m venv .venv
+```
+
+Activate the environment based on your operating system:
+
+* **macOS / Linux:**
+  ```bash
+  source .venv/bin/activate
+  ```
+* **Windows (Command Prompt):**
+  ```cmd
+  .venv\Scripts\activate.bat
+  ```
+* **Windows (PowerShell):**
+  ```powershell
+  .venv\Scripts\Activate.ps1
+  ```
+
+### 3. Install dependencies
+Upgrade `pip` and install the project in editable mode using `pyproject.toml`:
+```bash
+pip install --upgrade pip
+pip install -e .
+```
+
 ## Run the app
 
 ### uv

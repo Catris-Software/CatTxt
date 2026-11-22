@@ -3,14 +3,27 @@ from flet import BorderSide, OutlineInputBorder
 
 
 def main(page: ft.Page):
+
+    def update_preview(e):
+        md.value = selected_file_content.value
+        page.update()
+
     selected_file_name = ft.Text("No file selected")
     selected_file_content = ft.TextField(
         label="Selected file content",
         multiline=True,
         autocorrect=True,
         expand=True,
-        border=OutlineInputBorder(side=BorderSide(color=ft.Colors.TRANSPARENT))
+        border=OutlineInputBorder(side=BorderSide(color=ft.Colors.TRANSPARENT)),
+        on_change=update_preview
     )
+    md = ft.Markdown(
+        value=selected_file_content.value,
+        selectable=True,
+        extension_set="gitHubWeb",  
+        on_tap_link=lambda e: page.launch_url(e.data),
+    )
+
     save_status = ft.Text()
 
     async def pick_text_file(_: ft.Event[ft.FloatingActionButton]):
@@ -33,7 +46,7 @@ def main(page: ft.Page):
         save_status.value = ""
 
     async def save_text_file(_: ft.Event[ft.Button]):
-        file_name = "file.txt"
+        file_name = "untitled.md"
         file_path = await ft.FilePicker().save_file(
             file_name=file_name,
             file_type=ft.FilePickerFileType.CUSTOM,
@@ -61,9 +74,24 @@ def main(page: ft.Page):
     )
 
     page.add(
-        selected_file_content,
-        save_status,
+        ft.Row(
+            controls=[
+                selected_file_content,
+                save_status,
+                ft.Container(
+                    ft.Column(
+                        [md],
+                        scroll="hidden",
+                    ),
+                    expand=True,
+                    alignment=ft.Alignment.TOP_LEFT,
+                )
+            ],
+            vertical_alignment=ft.CrossAxisAlignment.START,
+            expand=True,
+        )
     )
+
 
     page.floating_action_button = ft.FloatingActionButton(
         icon=ft.Icons.FILE_OPEN_ROUNDED,
