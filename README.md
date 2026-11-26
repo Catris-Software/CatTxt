@@ -15,7 +15,7 @@ Follow these steps to clone the repository, set up a local virtual environment, 
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com
+git clone [https://github.com](https://github.com/Catris-Software/CatTxt.git)
 cd CatTxt
 ```
 
